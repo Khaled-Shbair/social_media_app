@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'constants/theme_mode_app.dart';
 import 'shared_preferences/pref_controller.dart';
 import 'package:flutter/material.dart';
 import 'language/translation.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
       locale: Locale(PrefController().language),
       fallbackLocale: const Locale('en'),
       onGenerateRoute: appRouters.onGenerateRoute,
+      theme: ThemeModeApp.lightTheme,
     );
   }
 }

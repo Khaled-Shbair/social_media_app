@@ -3,6 +3,7 @@ import '../firebase/firebase_auth.dart';
 import '../../widgets/button_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors_app.dart';
+import '../firebase/response_firebase.dart';
 import '../widgets/input_field.dart';
 import '../constants/routers.dart';
 import '../../utils/helpers.dart';
@@ -97,7 +98,7 @@ class _RegisterState extends State<Register> with Helpers {
           ),
           sizeBoxHeight(40),
           ButtonAuth(
-            onPressed: () async => await _register(),
+            onPressed: () async => await _performRegister(),
             text: 'create'.tr,
           ),
           sizeBoxHeight(40),
@@ -131,10 +132,36 @@ class _RegisterState extends State<Register> with Helpers {
   Widget sizeBoxHeight(double height) =>
       SizedBox(height: MediaQuery.of(context).size.height / height);
 
-  Future<void> _register() async => await AuthFirebase.register(
-        name: _nameController.text,
-        email: _emailController.text,
-        password: _passwordController.text,
-        phone: '059${_phoneController.text}',
-      );
+  Future<void> _performRegister() async {
+    if (_checkData()) {
+      await _register();
+    }
+  }
+
+  bool _checkData() {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty &&
+        _nameController.text.isNotEmpty &&
+        _phoneController.text.isNotEmpty) {
+      return true;
+    }
+    showSnackBar(message: 'Enter required data!', error: true);
+    return false;
+  }
+
+  Future<void> _register() async {
+    FbResponse fbResponse = await AuthFirebase.register(
+      name: _nameController.text,
+      email: _emailController.text,
+      password: _passwordController.text,
+      phone: '059${_phoneController.text}',
+    );
+    showSnackBar(message: fbResponse.message, error: !fbResponse.status);
+    if (fbResponse.status) {
+      navigator();
+    }
+  }
+
+  void navigator() =>
+      Navigator.pushNamedAndRemoveUntil(context, login, (route) => false);
 }

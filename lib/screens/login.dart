@@ -2,6 +2,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../firebase/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors_app.dart';
+import '../firebase/response_firebase.dart';
 import '../widgets/View_details.dart';
 import '../widgets/button_auth.dart';
 import '../widgets/input_field.dart';
@@ -78,7 +79,7 @@ class _LoginState extends State<Login> with Helpers {
           sizeBoxHeight(20),
           ButtonAuth(
             text: 'login'.tr,
-            onPressed: () async => await _login(),
+            onPressed: () async => await _performLogin(),
           ),
           sizeBoxHeight(40),
           Align(
@@ -127,8 +128,31 @@ class _LoginState extends State<Login> with Helpers {
   Widget sizeBoxHeight(double height) =>
       SizedBox(height: MediaQuery.of(context).size.height / height);
 
-  Future<void> _login() async => await AuthFirebase.login(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+  Future<void> _performLogin() async {
+    if (_checkData()) {
+      await _login();
+    }
+  }
+
+  bool _checkData() {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
+      return true;
+    }
+    showSnackBar(message: 'Enter required data!', error: true);
+    return false;
+  }
+
+  Future<void> _login() async {
+    FbResponse fbResponse = await AuthFirebase.login(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+    showSnackBar(message: fbResponse.message, error: !fbResponse.status);
+    if (fbResponse.status) {
+      navigator();
+    }
+  }
+
+  void navigator() => Navigator.pushReplacementNamed(context, home);
 }

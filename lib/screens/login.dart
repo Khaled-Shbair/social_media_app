@@ -10,6 +10,8 @@ import '../constants/routers.dart';
 import '../utils/helpers.dart';
 import 'package:get/get.dart';
 
+import 'app_layout.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -154,5 +156,6 @@ class _LoginState extends State<Login> with Helpers {
     }
   }
 
-  void navigator() => Navigator.pushReplacementNamed(context, home);
+  void navigator() =>
+      Navigator.pushNamedAndRemoveUntil(context, appLayout, (route) => false);
 }

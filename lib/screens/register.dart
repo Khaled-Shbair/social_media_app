@@ -1,9 +1,9 @@
+import '../firebase/response_firebase.dart';
 import '../../widgets/view_details.dart';
 import '../firebase/firebase_auth.dart';
 import '../../widgets/button_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors_app.dart';
-import '../firebase/response_firebase.dart';
 import '../widgets/input_field.dart';
 import '../constants/routers.dart';
 import '../../utils/helpers.dart';

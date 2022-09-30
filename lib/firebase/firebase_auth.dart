@@ -34,7 +34,7 @@ class AuthFirebase {
     } on FirebaseAuthException catch (e) {
       return _controlFirebaseException(e);
     } catch (e) {
-      //
+      return FbResponse(message: e.toString(), status: false);
     }
     return FbResponse(
         message: 'Something went wrong, try again', status: false);
@@ -68,43 +68,44 @@ class AuthFirebase {
         password: password,
       );
       if (userCredential.user != null) {
-       // String message = userCredential.user!.emailVerified
-       //     ? 'Logged in successfully'
-       //     : 'You must verify your email!';
-       // return FbResponse(message: message, status: userCredential.user!.emailVerified);
-        return FbResponse(message: 'Logged in successfully',
-            status: true);
+        // String message = userCredential.user!.emailVerified
+        //     ? 'Logged in successfully'
+        //     : 'You must verify your email!';
+        // return FbResponse(message: message, status: userCredential.user!.emailVerified);
+        return FbResponse(message: 'Logged in successfully', status: true);
       }
     } on FirebaseAuthException catch (e) {
       return _controlFirebaseException(e);
     } catch (e) {
-      //
+      return FbResponse(message: e.toString(), status: false);
     }
     return FbResponse(
         message: 'Something went wrong, try again', status: false);
   }
 
   static FbResponse _controlFirebaseException(FirebaseAuthException exception) {
-    if (exception.code == 'email-already-in-use') {
-      return FbResponse(message: 'Email already in use', status: false);
-    } else if (exception.code == 'invalid-email') {
-      return FbResponse(message: 'Invalid email', status: false);
-    } else if (exception.code == 'operation-not-allowed') {
-      return FbResponse(message: 'Operation not allowed', status: false);
-    } else if (exception.code == 'weak-password') {
-      return FbResponse(message: 'Weak password', status: false);
-    } else if (exception.code == 'user-disabled') {
-      return FbResponse(message: 'User disabled', status: false);
-    } else if (exception.code == 'user-not-found') {
-      return FbResponse(message: 'User not found', status: false);
-    } else if (exception.code == 'wrong-password') {
-      return FbResponse(message: 'Wrong password', status: false);
-    } else if (exception.code == 'auth/invalid-email') {
-      return FbResponse(message: 'Auth/Invalid email', status: false);
-    } else if (exception.code == 'auth/user-not-found') {
-      return FbResponse(message: 'Auth/User not found', status: false);
+    switch (exception.code) {
+      case 'invalid-email':
+        return FbResponse(message: 'Invalid email', status: false);
+      case 'weak-password':
+        return FbResponse(message: 'Weak password', status: false);
+      case 'user-disabled':
+        return FbResponse(message: 'User disabled', status: false);
+      case 'user-not-found':
+        return FbResponse(message: 'User not found', status: false);
+      case 'wrong-password':
+        return FbResponse(message: 'Wrong password', status: false);
+      case 'auth/invalid-email':
+        return FbResponse(message: 'Auth/Invalid email', status: false);
+      case 'auth/user-not-found':
+        return FbResponse(message: 'Auth/User not found', status: false);
+      case 'email-already-in-use':
+        return FbResponse(message: 'Email already in use', status: false);
+      case 'operation-not-allowed':
+        return FbResponse(message: 'Operation not allowed', status: false);
+      default:
+        return FbResponse(
+            message: exception.message ?? 'Error occurred', status: false);
     }
-    return FbResponse(
-        message: exception.message ?? 'Error occurred', status: false);
   }
 }

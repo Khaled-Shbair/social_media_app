@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../models/user.dart';
+import '../models/user_model.dart';
 
 class AuthFirebase {
   static final _firebaseAuth = FirebaseAuth.instance;
@@ -23,6 +23,7 @@ class AuthFirebase {
             name: name,
             phone: phone,
             id: value.user!.uid,
+            isEmailVerified: false,
           ),
         );
   }
@@ -32,12 +33,14 @@ class AuthFirebase {
     required String name,
     required String phone,
     required String id,
+    required bool isEmailVerified,
   }) async {
     UserModel user = UserModel(
       id: id,
       name: name,
       email: email,
       phone: phone,
+      isEmailVerified: isEmailVerified,
     );
     _fireStore.collection('users').doc(id).set(user.toMap());
   }

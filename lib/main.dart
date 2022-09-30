@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'language/translation.dart';
 import 'package:get/get.dart';
 import 'app_routers.dart';
+import 'shared_preferences/pref_controller.dart';
 
 void main() async {
   await Firebase.initializeApp();
+  await PrefController.init();
+
   runApp(MyApp(appRouters: AppRouters()));
 }
 
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       translations: Translation(),
       //locale: Locale(PrefController().language),
-      locale: Locale('en'),
+      locale: const Locale('en'),
       fallbackLocale: const Locale('en'),
       onGenerateRoute: appRouters.onGenerateRoute,
       //theme: ThemeModeApp.lightTheme,

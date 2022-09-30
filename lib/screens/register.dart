@@ -1,23 +1,21 @@
-import '../../widgets/password_filed.dart';
 import '../../widgets/view_details.dart';
 import '../firebase/firebase_auth.dart';
 import '../../widgets/button_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors_app.dart';
 import '../widgets/input_field.dart';
-import '../constants/fonts_app.dart';
 import '../constants/routers.dart';
 import '../../utils/helpers.dart';
 import 'package:get/get.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> with Helpers {
+class _RegisterState extends State<Register> with Helpers {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _phoneController;
@@ -65,32 +63,37 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
           sizeBoxHeight(40),
           InputFiled(
             controller: _nameController,
-            keyboard: TextInputType.name,
             prefixIcon: Icons.person,
             labelText: 'name'.tr,
-            fontSizeLabel: 16,
-            prefixText: '',
-            maxLength: 8,
           ),
           sizeBoxHeight(40),
           InputFiled(
             controller: _emailController,
+            prefixIcon: Icons.email_outlined,
+            labelText: 'email'.tr,
+          ),
+          sizeBoxHeight(40),
+          InputFiled(
+            controller: _phoneController,
             keyboard: TextInputType.phone,
             prefixIcon: Icons.phone_android,
             labelText: 'phone'.tr,
-            fontSizeLabel: 16,
-            maxLength: 9,
+            maxLength: 7,
+            prefixText: '059',
           ),
           sizeBoxHeight(40),
-          PasswordFiled(
+          InputFiled(
             controller: _passwordController,
             obscureText: _obscureText,
+            prefixIcon: Icons.lock_outline,
             labelText: 'password'.tr,
-            onPressed: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
+            suffixIcon: IconButton(
+              onPressed: () => setState(() => _obscureText = !_obscureText),
+              icon: Icon(
+                _obscureText ? Icons.visibility : Icons.visibility_off,
+                color: ColorsApp.green,
+              ),
+            ),
           ),
           sizeBoxHeight(40),
           ButtonAuth(
@@ -102,8 +105,8 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ViewDetails(
-                data: 'do_you_have_an_account'.tr,
-                fontFamily: FontsApp.fontRegular,
+                data: 'already_have_an_account'.tr,
+                fontWeight: FontWeight.w400,
                 color: ColorsApp.green,
                 fontSize: 17,
               ),
@@ -112,7 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
                     context, login, (route) => false),
                 child: ViewDetails(
                   data: 'login'.tr,
-                  fontFamily: FontsApp.fontBold,
+                  fontWeight: FontWeight.bold,
                   decoration: TextDecoration.underline,
                   color: ColorsApp.green,
                   fontSize: 15,
@@ -128,12 +131,10 @@ class _RegisterScreenState extends State<RegisterScreen> with Helpers {
   Widget sizeBoxHeight(double height) =>
       SizedBox(height: MediaQuery.of(context).size.height / height);
 
-  Future<void> _register() async {
-    await AuthFirebase.register(
-      name: _nameController.text,
-      email: _emailController.text,
-      password: _passwordController.text,
-      phone: _phoneController.text,
-    );
-  }
+  Future<void> _register() async => await AuthFirebase.register(
+        name: _nameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        phone: '059${_phoneController.text}',
+      );
 }

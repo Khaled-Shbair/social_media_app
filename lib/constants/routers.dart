@@ -1,4 +1,3 @@
-const String onBoarding = '/onBoarding';
 const String forgetPassword = '/forgetPassword';
-const String registerScreen = '/registerScreen';
+const String register = '/register';
 const String login = '/login';

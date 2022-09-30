@@ -1,9 +1,8 @@
 const Map<String, String> ar = {
-  'title_onBoarding': 'اسم التطبيق',
-  'sub_title_onBoarding':
-      ' يتم   الحصول على أفضل الخصومات، أكواد الخصم، و كوبونات خصم المتاجر الالكترونية ومواقع التسوق المفضلة إليك في  السعودية والإمارات وبلدان أخرى.',
   'start': 'ابدأ',
+  'name': 'الاسم',
   'skip': 'تخطي',
+  'phone': 'رقم الجوال',
   'email': 'الايميل',
   'password': 'كلمة المرور',
   'remember_me': 'تذكرنى',
@@ -22,4 +21,8 @@ const Map<String, String> ar = {
   'done': 'تم',
   'check_that_the_email_is_correct': 'تحقق من صحة البريد الإلكتروني',
   'check_that_the_password_is_correct': 'تحقق من صحة كلمة المرور',
+  'create_new_account': 'إنشاء حساب جديد',
+  'welcome_back': 'مرحبًا بعودتك',
+  'create_account_to_start_app': 'إنشاء حساب لبدء التطبيق',
+  'login_to_start_using_app': 'تسجيل الدخول لبدء استخدام التطبيق',
 };

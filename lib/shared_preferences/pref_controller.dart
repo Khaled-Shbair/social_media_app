@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stores/models/user_model.dart';
 
 enum PrefKeys {
+  language,
   phone,
   login,
   name,
@@ -28,6 +29,14 @@ class PrefController {
     await _sharedPreferences.setString(PrefKeys.name.toString(), user.name);
     await _sharedPreferences.setString(PrefKeys.email.toString(), user.email);
   }
+
+  Future<bool> changeLanguage({required String language}) async {
+    return await _sharedPreferences.setString(
+        PrefKeys.language.toString(), language);
+  }
+
+  String get language =>
+      _sharedPreferences.getString(PrefKeys.language.toString()) ?? 'en';
 
   static bool get login =>
       _sharedPreferences.getBool(PrefKeys.login.toString()) ?? false;

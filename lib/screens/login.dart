@@ -1,15 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import '../constants/colors_app.dart';
-import '../constants/fonts_app.dart';
-import '../constants/routers.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../firebase/firebase_auth.dart';
-import '../utils/helpers.dart';
+import 'package:flutter/material.dart';
+import '../constants/colors_app.dart';
 import '../widgets/View_details.dart';
 import '../widgets/button_auth.dart';
 import '../widgets/input_field.dart';
-import '../widgets/password_filed.dart';
+import '../constants/routers.dart';
+import '../utils/helpers.dart';
+import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -19,20 +17,20 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> with Helpers {
-  late TextEditingController _mobileController;
+  late TextEditingController _emailController;
   late TextEditingController _passwordController;
   bool _obscureText = true;
 
   @override
   void initState() {
     super.initState();
-    _mobileController = TextEditingController();
+    _emailController = TextEditingController();
     _passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _mobileController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -47,35 +45,35 @@ class _LoginState extends State<Login> with Helpers {
         children: [
           ViewDetails(
             data: 'welcome_back'.tr,
-            fontFamily: FontsApp.fontMedium,
             color: Colors.black,
+            fontWeight: FontWeight.w500,
             fontSize: 25,
           ),
           ViewDetails(
             data: 'login_to_start_using_app'.tr,
-            fontFamily: FontsApp.fontRegular,
             color: ColorsApp.gery,
+            fontWeight: FontWeight.w400,
             fontSize: 17,
           ),
           sizeBoxHeight(40),
           InputFiled(
-            controller: _mobileController,
-            keyboard: TextInputType.phone,
-            prefixIcon: Icons.phone_android,
-            labelText: 'phone'.tr,
-            fontSizeLabel: 16,
-            maxLength: 9,
+            controller: _emailController,
+            prefixIcon: Icons.email_outlined,
+            labelText: 'email'.tr,
           ),
           sizeBoxHeight(40),
-          PasswordFiled(
+          InputFiled(
             controller: _passwordController,
             obscureText: _obscureText,
+            prefixIcon: Icons.lock_outline,
             labelText: 'password'.tr,
-            onPressed: () {
-              setState(() {
-                _obscureText = !_obscureText;
-              });
-            },
+            suffixIcon: IconButton(
+              onPressed: () => setState(() => _obscureText = !_obscureText),
+              icon: Icon(
+                _obscureText ? Icons.visibility : Icons.visibility_off,
+                color: ColorsApp.green,
+              ),
+            ),
           ),
           sizeBoxHeight(20),
           ButtonAuth(
@@ -90,9 +88,9 @@ class _LoginState extends State<Login> with Helpers {
                 Navigator.pushNamed(context, forgetPassword);
               },
               child: Text(
-                'forget_password_button'.tr,
-                style: const TextStyle(
-                  fontFamily: FontsApp.fontRegular,
+                'forgot_password'.tr,
+                style: GoogleFonts.rubik(
+                  fontWeight: FontWeight.w400,
                   color: ColorsApp.green,
                   decoration: TextDecoration.underline,
                 ),
@@ -104,20 +102,20 @@ class _LoginState extends State<Login> with Helpers {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ViewDetails(
-                data: 'no_have_an_account'.tr,
-                fontFamily: FontsApp.fontRegular,
-                color: ColorsApp.green,
                 fontSize: 17,
+                color: ColorsApp.green,
+                fontWeight: FontWeight.w400,
+                data: 'do_not_have_an_account'.tr,
               ),
               TextButton(
-                onPressed: () => Navigator.pushNamed(context, registerScreen),
                 child: ViewDetails(
-                  data: 'create_now'.tr,
-                  fontFamily: FontsApp.fontBold,
-                  decoration: TextDecoration.underline,
+                  fontSize: 16,
+                  data: 'sign_up'.tr,
                   color: ColorsApp.green,
-                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
                 ),
+                onPressed: () => Navigator.pushNamed(context, register),
               ),
             ],
           ),
@@ -129,8 +127,8 @@ class _LoginState extends State<Login> with Helpers {
   Widget sizeBoxHeight(double height) =>
       SizedBox(height: MediaQuery.of(context).size.height / height);
 
-  Future<void> _login() async {
-    await AuthFirebase.login(
-        email: _mobileController.text, password: _passwordController.text);
-  }
+  Future<void> _login() async => await AuthFirebase.login(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
 }

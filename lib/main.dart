@@ -1,14 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'shared_preferences/pref_controller.dart';
 import 'package:flutter/material.dart';
 import 'language/translation.dart';
 import 'package:get/get.dart';
 import 'app_routers.dart';
-import 'shared_preferences/pref_controller.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await PrefController.init();
-
   runApp(MyApp(appRouters: AppRouters()));
 }
 
@@ -22,13 +22,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       translations: Translation(),
-      //locale: Locale(PrefController().language),
-      locale: const Locale('en'),
+      locale: Locale(PrefController().language),
       fallbackLocale: const Locale('en'),
       onGenerateRoute: appRouters.onGenerateRoute,
-      //theme: ThemeModeApp.lightTheme,
-      //darkTheme: ThemeModeApp.darkTheme,
-      //themeMode: ThemeModeApp.getThemeMode(),
     );
   }
 }

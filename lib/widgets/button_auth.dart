@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/view_details.dart';
 import '../constants/colors_app.dart';
-import '../constants/fonts_app.dart';
 
 class ButtonAuth extends StatelessWidget {
   const ButtonAuth({
@@ -28,8 +27,8 @@ class ButtonAuth extends StatelessWidget {
       ),
       child: ViewDetails(
         data: text,
-        fontFamily: FontsApp.fontMedium,
         fontSize: 18,
+        fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
     );

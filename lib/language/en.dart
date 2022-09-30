@@ -1,17 +1,16 @@
 const Map<String, String> en = {
-  'title_onBoarding': 'Name App',
-  'sub_title_onBoarding':
-      'The best discounts, discount codes, discount coupons for online stores and your favorite shopping sites in Saudi Arabia, UAE and more.',
   'start': 'Start',
   'skip': 'Skip',
+  'name': 'Name',
   'email': 'Email',
+  'phone': 'Phone',
   'password': 'Password',
   'remember_me': 'Remember Me',
   'forgot_password': 'Forgot Password?',
   'login': 'Login',
   'or': 'Or',
   'do_not_have_an_account': 'Don’t have an Account?',
-  'already_have_an_account?': 'Already have an account?',
+  'already_have_an_account': 'Already have an account?',
   'sign_up': 'Sign up',
   'full_name': 'Full Name',
   'please_enter_your_email_for_refund_password':
@@ -21,4 +20,8 @@ const Map<String, String> en = {
   'password_reset': 'Password Reset',
   'check_that_the_email_is_correct': 'Check that the email is correct',
   'check_that_the_password_is_correct': 'Check that the password is correct',
+  'create_new_account': 'Create new account',
+  'welcome_back': 'Welcome back',
+  'login_to_start_using_app': 'Login to start using app',
+  'create_account_to_start_app': 'Create account to start app',
 };

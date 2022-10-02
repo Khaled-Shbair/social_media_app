@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'constants/theme_mode_app.dart';
 import 'shared_preferences/pref_controller.dart';
+import 'constants/theme_mode_app.dart';
 import 'package:flutter/material.dart';
 import 'language/translation.dart';
+import 'GetX/profile_getX.dart';
 import 'package:get/get.dart';
 import 'app_routers.dart';
 
@@ -14,7 +15,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({required this.appRouters, super.key});
+  MyApp({required this.appRouters, super.key});
+
+  final ProfileGetX profileGetX = Get.put(ProfileGetX());
 
   final AppRouters appRouters;
 

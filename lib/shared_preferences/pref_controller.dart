@@ -1,5 +1,4 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:stores/models/user_model.dart';
 
 enum PrefKeys {
   language,
@@ -22,12 +21,8 @@ class PrefController {
     _sharedPreferences = await SharedPreferences.getInstance();
   }
 
-  static Future<void> save(UserModel user) async {
+  static Future<void> saveLogin() async {
     await _sharedPreferences.setBool(PrefKeys.login.toString(), true);
-    await _sharedPreferences.setString(PrefKeys.id.toString(), user.id);
-    await _sharedPreferences.setString(PrefKeys.phone.toString(), user.phone);
-    await _sharedPreferences.setString(PrefKeys.name.toString(), user.name);
-    await _sharedPreferences.setString(PrefKeys.email.toString(), user.email);
   }
 
   Future<bool> changeLanguage({required String language}) async {

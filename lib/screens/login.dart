@@ -1,16 +1,14 @@
 import 'package:google_fonts/google_fonts.dart';
+import '../firebase/response_firebase.dart';
 import '../firebase/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors_app.dart';
-import '../firebase/response_firebase.dart';
-import '../widgets/text_app.dart';
 import '../widgets/button_auth.dart';
 import '../widgets/input_field.dart';
 import '../constants/routers.dart';
+import '../widgets/text_app.dart';
 import '../utils/helpers.dart';
 import 'package:get/get.dart';
-
-import 'app_layout.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

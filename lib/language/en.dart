@@ -23,4 +23,5 @@ const Map<String, String> en = {
   'check_that_the_email_is_correct': 'Check that the email is correct',
   'check_that_the_password_is_correct': 'Check that the password is correct',
   'or': 'Or',
+  'profile':'Profile',
 };

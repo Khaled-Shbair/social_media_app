@@ -13,6 +13,7 @@ const Map<String, String> ar = {
   'welcome_back': 'مرحبًا بعودتك',
   'create_account_to_start_app': 'إنشاء حساب لبدء التطبيق',
   'login_to_start_using_app': 'تسجيل الدخول لبدء استخدام التطبيق',
+  'profile': 'الملف الشخصي',
   ///////////////////////////////////////////
   'or': 'او',
   'please_enter_your_email_for_refund_password':

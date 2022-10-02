@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/colors_app.dart';
 import '../widgets/text_app.dart';
-import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,46 +12,43 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('home'.tr)),
-      body: ListView(
-        children: [
-          Stack(
-            alignment: AlignmentDirectional.topEnd,
-            children: [
-              Card(
-                margin: const EdgeInsetsDirectional.all(8),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                elevation: 20,
-                child: Image.network(
-                  'https://img.freepik.com/free-photo/close-up-young-handsome-man-isolated_273609-35826.jpg?w=740&t=st=1664701704~exp=1664702304~hmac=0492634faac4aeaecdb6fe70e324ccaefa5150050b3a50c16608ac0f9115726c',
-                  fit: BoxFit.cover,
-                  height: 250,
-                  width: double.infinity,
-                ),
+    return ListView(
+      children: [
+        Stack(
+          alignment: AlignmentDirectional.topEnd,
+          children: [
+            Card(
+              margin: const EdgeInsetsDirectional.all(8),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 20,
+              child: Image.network(
+                'https://img.freepik.com/free-photo/close-up-young-handsome-man-isolated_273609-35826.jpg?w=740&t=st=1664701704~exp=1664702304~hmac=0492634faac4aeaecdb6fe70e324ccaefa5150050b3a50c16608ac0f9115726c',
+                fit: BoxFit.cover,
+                height: 250,
+                width: double.infinity,
               ),
-              const Padding(
-                padding: EdgeInsetsDirectional.only(
-                  end: 20,
-                  top: 35,
-                ),
-                child: TextApp(
-                  data: 'Communicate with friends',
-                  color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            const Padding(
+              padding: EdgeInsetsDirectional.only(
+                end: 20,
+                top: 35,
               ),
-            ],
-          ),
-          ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) => buildPostItem(),
-              separatorBuilder: (context, index) => const SizedBox(height: 5),
-              itemCount: 10),
-        ],
-      ),
+              child: TextApp(
+                data: 'Communicate with friends',
+                color: Colors.white,
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) => buildPostItem(),
+            separatorBuilder: (context, index) => const SizedBox(height: 5),
+            itemCount: 10),
+      ],
     );
   }
 

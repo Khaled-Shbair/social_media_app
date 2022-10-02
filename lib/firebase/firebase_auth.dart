@@ -1,28 +1,35 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../shared_preferences/pref_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../models/user_model.dart';
+import '../GetX/profile_getX.dart';
 import 'response_firebase.dart';
 
 class AuthFirebase {
   static final _firebaseAuth = FirebaseAuth.instance;
-  static final _fireStore = FirebaseFirestore.instance;
 
   static Future<FbResponse> register({
-    required String email,
-    required String name,
     required String password,
+    required String email,
     required String phone,
+    required String name,
   }) async {
     try {
-      UserCredential userCredential = await _firebaseAuth
-          .createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential =
+          await _firebaseAuth.createUserWithEmailAndPassword(
+        password: password,
+        email: email,
+      );
       if (userCredential.user != null) {
-        _saveDataUser(
-          email: email,
-          name: name,
-          phone: phone,
-          isEmailVerified: false,
+        ProfileGetX.to.setDataUser(
+          image:
+              'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+          cover:
+              'https://img.freepik.com/free-photo/red-haired-serious-young-man-blogger-looks-confidently_273609-16730.jpg?w=740&t=st=1664705051~exp=1664705651~hmac=5108c75d5c667e66adf84e10e4ee26fdb284c0d923a19cde765253948d9099db',
           id: userCredential.user!.uid,
+          isEmailVerified: false,
+          email: email,
+          phone: phone,
+          bio: 'write your bio ...',
+          name: name,
         );
         await userCredential.user!.sendEmailVerification();
         return FbResponse(
@@ -40,38 +47,22 @@ class AuthFirebase {
         message: 'Something went wrong, try again', status: false);
   }
 
-  static void _saveDataUser({
-    required String email,
-    required String name,
-    required String phone,
-    required String id,
-    required bool isEmailVerified,
-  }) async {
-    UserModel user = UserModel(
-      id: id,
-      name: name,
-      email: email,
-      phone: phone,
-      isEmailVerified: isEmailVerified,
-    );
-    _fireStore.collection('users').doc(id).set(user.toMap());
-  }
-
   static Future<FbResponse> login({
-    required String email,
     required String password,
+    required String email,
   }) async {
     try {
       UserCredential userCredential =
           await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
         password: password,
+        email: email,
       );
       if (userCredential.user != null) {
         // String message = userCredential.user!.emailVerified
         //     ? 'Logged in successfully'
         //     : 'You must verify your email!';
         // return FbResponse(message: message, status: userCredential.user!.emailVerified);
+        PrefController.saveLogin();
         return FbResponse(message: 'Logged in successfully', status: true);
       }
     } on FirebaseAuthException catch (e) {

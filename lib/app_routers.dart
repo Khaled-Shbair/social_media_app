@@ -1,12 +1,13 @@
+import 'shared_preferences/pref_controller.dart';
 import 'package:flutter/material.dart';
-import 'constants/routers.dart';
 import 'screens/app_layout.dart';
+import 'constants/routers.dart';
 import 'screens/register.dart';
 import 'screens/settings.dart';
 import 'screens/chats.dart';
 import 'screens/login.dart';
-import 'screens/home.dart';
 import 'screens/users.dart';
+import 'screens/home.dart';
 
 class AppRouters {
   Route onGenerateRoute(RouteSettings settings) {
@@ -26,7 +27,11 @@ class AppRouters {
       case appLayout:
         return MaterialPageRoute(builder: (context) => const AppLayout());
       default:
-        return MaterialPageRoute(builder: (context) => const Login());
+        if (PrefController.login) {
+          return MaterialPageRoute(builder: (context) => const AppLayout());
+        } else {
+          return MaterialPageRoute(builder: (context) => const Login());
+        }
     }
   }
 }

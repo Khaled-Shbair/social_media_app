@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../constants/colors_app.dart';
 import 'settings.dart';
 import 'users.dart';
@@ -19,12 +20,20 @@ class _AppLayoutState extends State<AppLayout> {
     const Users(),
     const Settings()
   ];
-
+  final List<String> titleAppBar = <String>[
+    'home'.tr,
+    'home'.tr,
+    'home'.tr,
+    'profile'.tr,
+  ];
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(titleAppBar[currentIndex]),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (value) => setState(() => currentIndex = value),
@@ -38,8 +47,7 @@ class _AppLayoutState extends State<AppLayout> {
               icon: Icon(Icons.wechat_sharp), label: 'Chats'),
           BottomNavigationBarItem(
               icon: Icon(Icons.location_on), label: 'Users'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Settings'),
         ],
       ),
       body: screen[currentIndex],

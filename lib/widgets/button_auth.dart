@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/view_details.dart';
+import '../widgets/text_app.dart';
 import '../constants/colors_app.dart';
 
 class ButtonAuth extends StatelessWidget {
@@ -25,7 +25,7 @@ class ButtonAuth extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      child: ViewDetails(
+      child: TextApp(
         data: text,
         fontSize: 18,
         fontWeight: FontWeight.w500,

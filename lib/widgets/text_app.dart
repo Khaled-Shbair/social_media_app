@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ViewDetails extends StatelessWidget {
-  const ViewDetails({
+class TextApp extends StatelessWidget {
+  const TextApp({
     Key? key,
     required this.data,
     this.fontSize = 26,

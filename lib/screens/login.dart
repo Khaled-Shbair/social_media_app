@@ -3,7 +3,7 @@ import '../firebase/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors_app.dart';
 import '../firebase/response_firebase.dart';
-import '../widgets/View_details.dart';
+import '../widgets/text_app.dart';
 import '../widgets/button_auth.dart';
 import '../widgets/input_field.dart';
 import '../constants/routers.dart';
@@ -46,13 +46,13 @@ class _LoginState extends State<Login> with Helpers {
         padding: const EdgeInsetsDirectional.all(20),
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          ViewDetails(
+          TextApp(
             data: 'welcome_back'.tr,
             color: Colors.black,
             fontWeight: FontWeight.w500,
             fontSize: 25,
           ),
-          ViewDetails(
+          TextApp(
             data: 'login_to_start_using_app'.tr,
             color: ColorsApp.gery,
             fontWeight: FontWeight.w400,
@@ -104,14 +104,14 @@ class _LoginState extends State<Login> with Helpers {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ViewDetails(
+              TextApp(
                 fontSize: 17,
                 color: ColorsApp.green,
                 fontWeight: FontWeight.w400,
                 data: 'do_not_have_an_account'.tr,
               ),
               TextButton(
-                child: ViewDetails(
+                child: TextApp(
                   fontSize: 16,
                   data: 'sign_up'.tr,
                   color: ColorsApp.green,

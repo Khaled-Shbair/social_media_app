@@ -1,5 +1,5 @@
 import '../firebase/response_firebase.dart';
-import '../../widgets/view_details.dart';
+import '../../widgets/text_app.dart';
 import '../firebase/firebase_auth.dart';
 import '../../widgets/button_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,13 +49,13 @@ class _RegisterState extends State<Register> with Helpers {
         padding: const EdgeInsetsDirectional.all(20),
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          ViewDetails(
+          TextApp(
             data: 'create_new_account'.tr,
             color: Colors.black,
             fontWeight: FontWeight.bold,
             fontSize: 25,
           ),
-          ViewDetails(
+          TextApp(
             data: 'create_account_to_start_app'.tr,
             color: Colors.black45,
             fontWeight: FontWeight.w300,
@@ -105,7 +105,7 @@ class _RegisterState extends State<Register> with Helpers {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ViewDetails(
+              TextApp(
                 data: 'already_have_an_account'.tr,
                 fontWeight: FontWeight.w400,
                 color: ColorsApp.green,
@@ -114,7 +114,7 @@ class _RegisterState extends State<Register> with Helpers {
               TextButton(
                 onPressed: () => Navigator.pushNamedAndRemoveUntil(
                     context, login, (route) => false),
-                child: ViewDetails(
+                child: TextApp(
                   data: 'login'.tr,
                   fontWeight: FontWeight.bold,
                   decoration: TextDecoration.underline,

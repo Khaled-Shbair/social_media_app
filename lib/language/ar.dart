@@ -14,6 +14,15 @@ const Map<String, String> ar = {
   'create_account_to_start_app': 'إنشاء حساب لبدء التطبيق',
   'login_to_start_using_app': 'تسجيل الدخول لبدء استخدام التطبيق',
   'profile': 'الملف الشخصي',
+  'createPost': 'إنشاء منشور',
+  'chats': 'الدردشات',
+  'users': 'المستخدمون',
+  'create': 'إنشاء',
+  'tags': '# العلامات',
+  'add_image': 'إضافة صورة',
+
+  'what_is_on_your_mind': 'ماذا يدور في ذهنك ...',
+
   ///////////////////////////////////////////
   'or': 'او',
   'please_enter_your_email_for_refund_password':

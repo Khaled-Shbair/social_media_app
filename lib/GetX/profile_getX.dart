@@ -10,7 +10,7 @@ class ProfileGetX extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getUserData();
+   // getUserData();
   }
 
   final _userModel = Rxn<UserModel>();
@@ -19,13 +19,13 @@ class ProfileGetX extends GetxController {
 
   set userModel(UserModel? value) => _userModel.value = value;
 
-  Future<void> getUserData() async {
-    loading.value = true;
-    _fireStore.collection('users').doc().get().then((value) {
-      userModel = UserModel.fromMap(value.data()!);
-      loading.value = false;
-    });
-  }
+  //Future<void> getUserData() async {
+  //  loading.value = true;
+  //  _fireStore.collection('users').doc().get().then((value) {
+  //    userModel = UserModel.fromMap(value.data()!);
+  //    loading.value = false;
+  //  });
+  //}
 
   Future<void> setDataUser({
     required bool isEmailVerified,

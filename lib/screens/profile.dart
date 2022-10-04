@@ -4,14 +4,14 @@ import '../GetX/profile_getX.dart';
 import '../widgets/loading.dart';
 import 'package:get/get.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _SettingsState extends State<Settings> {
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return GetX<ProfileGetX>(
@@ -25,9 +25,7 @@ class _SettingsState extends State<Settings> {
   }
 
   Widget buildProfile() {
-    print('1');
     if (ProfileGetX.to.userModel != null) {
-      print('2');
       return ListView(
         physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsetsDirectional.only(start: 10, end: 10),
@@ -126,7 +124,6 @@ class _SettingsState extends State<Settings> {
         ],
       );
     } else {
-      print('3');
       return const Loading();
     }
   }

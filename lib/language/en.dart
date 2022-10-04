@@ -13,6 +13,14 @@ const Map<String, String> en = {
   'do_not_have_an_account': 'Don’t have an Account?',
   'already_have_an_account': 'Already have an account?',
   'sign_up': 'Sign up',
+  'profile': 'Profile',
+  'createPost': 'Create post',
+  'chats': 'Chats',
+  'users': 'Users',
+  'create': 'Create',
+  'add_image': 'Add image',
+  'tags': '# tags',
+  'what_is_on_your_mind': 'What is on your mind ...',
   ////////////////////////////////
 
   'please_enter_your_email_for_refund_password':
@@ -23,5 +31,4 @@ const Map<String, String> en = {
   'check_that_the_email_is_correct': 'Check that the email is correct',
   'check_that_the_password_is_correct': 'Check that the password is correct',
   'or': 'Or',
-  'profile':'Profile',
 };

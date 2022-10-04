@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'screens/app_layout.dart';
 import 'constants/routers.dart';
 import 'screens/register.dart';
-import 'screens/settings.dart';
+import 'screens/profile.dart';
 import 'screens/chats.dart';
 import 'screens/login.dart';
 import 'screens/users.dart';
@@ -21,7 +21,7 @@ class AppRouters {
       case login:
         return MaterialPageRoute(builder: (context) => const Login());
       case setting:
-        return MaterialPageRoute(builder: (context) => const Settings());
+        return MaterialPageRoute(builder: (context) => const Profile());
       case register:
         return MaterialPageRoute(builder: (context) => const Register());
       case appLayout:
